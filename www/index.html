@@ -47,16 +47,16 @@ var option = {enableHighAccuracy: true};
 
 function onSucces(geo){
 	var lat = geo.coords.latitude;
-	var log = geo.coords.longitude;
+	var long = geo.coords.longitude;
 	
 	L.mapbox.accessToken = 'pk.eyJ1IjoidGF0b3JlaXMiLCJhIjoiSHZzX0ctNCJ9.t-BTkTB9B1zvYETfq-WNxw';
 	
-var map = L.mapbox.map('map', 'examples.map-i86nkdio').setView([lat, log], 20);
+var map = L.mapbox.map('map', 'examples.map-i86nkdio').setView([lat, long], 20);
 
 //setInterval( function(){ addMarker(map, geo.coords.latitude, geo.coords.longitude); }, 500);
 
 
-var marker = L.marker([lat, log], {
+var marker = L.marker([lat, long], {
     icon: L.mapbox.marker.icon({
       'marker-color': '#f86767'
     })
@@ -67,7 +67,7 @@ window.setInterval(function() {
     // Create your own animated path here.
     marker.setLatLng(L.latLng(
         lat,
-        log));
+        long));
 }, 50);
 
 marker.addTo(map);
