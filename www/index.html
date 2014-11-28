@@ -62,19 +62,29 @@ var marker = L.marker([lat, long], {
     })
 });
 
-window.setInterval(function() {
-    // Making a lissajous curve just for fun.
-    // Create your own animated path here.
-    marker.setLatLng(L.latLng(
-        lat,
-        long));
-}, 50);
+window.setInterval(function() {newGeo()},50);
+	
+function newGeo(){
+	navigator.geolocation.getCurrentPosition(succes,erro);
+	function succes(gp){
+		var lt = gp.coords.latitude;
+		var lg = gp.coords.longitude;
+		newMarker(lt,lg);
+	}
+};
+    
+	function newMarker(LT,LG){
+		marker.setLatLng(L.latLng(LT,LG));
+		marker.addTo(map).bindPopup('Latitude:' + LT + '<br>'+ 'Longitude: ' + LG).closePopup();
+	};
 
-marker.addTo(map);
-  
+	function erro(){
+		alert("Erro");
+	};
 
 	
 };
+
 function onError(){
 	alert("Erro");
 };
